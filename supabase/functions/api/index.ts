@@ -907,7 +907,7 @@ async function handleRequest(req: Request): Promise<Response> {
     }
 
     // --- TELEGRAM BOT WEBHOOK ---
-    if (path === "bot") {
+    if (path === "bot" || path === "" || path === "api" || (req.method === "POST" && !path.startsWith("admin") && !path.startsWith("cron") && !path.startsWith("auth"))) {
       const update = await req.json();
 
       if (update.chat_member) {
