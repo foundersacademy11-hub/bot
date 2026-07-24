@@ -113,6 +113,102 @@ const STATIC_MESSAGES = {
     "receipt_declined_msg": "❌ **የደረሰኝ ማረጋገጫ ተቀባይነት አላገኘም**\n\nሰላም **{name}**፣ የደረሰኝ ቁጥርዎ `{receipt}` ውድቅ ተደርጓል።\n\n⚠️ **ምክንያት**: {reason}",
     "referral_reward_msg": "🎁 **እንኳን ደስ አሰኞት! 3 ጓደኞችን በተሳካ ሁኔታ ጋብዘዋል!**\n\nሰላም **{name}**፣ 3 ሰዎችን ስለጋበዙ የፋውንደርስ አካዳሚ ኮርሱን በነጻ አግኝተዋል! አሁን የእኛን ፕሪሚየም የግል ቻናል ለመቀላቀል ፈቃድ አግኝተዋል!\n\n🔗 **የአንድ ጊዜ መጋበዣ ሊንክዎ**:\n{link}\n\n*ማስታወሻ: ይህ ሊንክ ልዩ ነው እና በአንድ ሰው ብቻ ነው ጥቅም ላይ ሊውል የሚችለው።*",
     "quiz_not_completed": "⚠️ **ጥያቄዎች አልተጠናቀቁም**\n\nየማጠናቀቂያ ሰርተፊኬት ለማግኘት ሁሉንም ዕለታዊ ጥያቄዎች ማጠናቀቅ አለብዎት።"
+  },
+  "om": {
+    "welcome_choose_lang": "🇪🇹 Baga nagaan gara Founders Academy dhuftan!\n\nMaaloo afaan filattan filadhaa:",
+    "ask_name": "Baga nagaan dhuftan! Haa jalqabnu.\n\nMaaloo **Maqaa Guutuu** keessan galchaa:",
+    "ask_name_am": "Maaloo guutuu maqaa keessanii **Afaan Amaaraatiin** barreessaa (fkn. አበበ በሶ):",
+    "ask_name_en": "Maaloo guutuu maqaa keessanii **Afaan Ingiliffaatiin** barreessaa (fkn. Abebe Beso):",
+    "invalid_name": "Maaloo maqaa guutuu sirrii ta'e (qubee qofa) galchaa.",
+    "ask_phone": "Baay'ee gaariidha! Amma maaloo liinkii gaditti argamu cuqaasuun **Lakkoofsa Bilbilaa** keessan nuuf qoodaa, ykn harkaan barreessaa (fkn, 0911...).",
+    "btn_share_contact": "Lakkoofsa Bilbilaa Qoodi 📞",
+    "phone_saved": "Lakkoofsi bilbilaa olkaa'ameera.",
+    "duplicate_phone": "Lakkoofsi bilbilaa kun kanaan dura galmeeffameera. Yoo kun dogoggora jedhanii yaaddan, maaloo deggersa keenya qunnamaa.",
+    "invalid_phone": "Maaloo lakkoofsa bilbilaa sirrii ta'e galchaa.",
+    "ask_payment_method": "Baay'ee gaariidha! Kaffaltii galmee keessanii akkamitti kaffaluu barbaaddu?\n\nMaaloo filannoo gaditti argaman keessaa tokko filadhaa:",
+    "btn_telebirr": "Telebirr 📱",
+    "btn_cbe": "CBE (Baankii Daldala Itiyoophiyaa) 🏦",
+    "btn_abyssinia": "Baankii Abisiiniyaa 🏦",
+    "select_payment_method_first": "Maaloo dura kaffaltii bilbilaa/baankii kanaan gaditti filadhaa.",
+    "telebirr_payment_instructions": "📱 **Kaffaltii Telebirr**\n\nMaaloo **{amount} ETB** gara kanaan ergaa:\n\n**Maqaa:** {acc_name}\n**Lakkoofsa:** `{acc_num}`\n\nYoo kaffaltii xumurtan, maaloo **Nagahee/Fakkii** kaffaltii keessanii kanaan gaditti ergaa:",
+    "cbe_payment_instructions": "🏦 **Kaffaltii CBE**\n\nMaaloo **{amount} ETB** gara kanaan ergaa:\n\n**Maqaa:** {acc_name}\n**Herrega Baankii:** `{acc_num}`\n\nYoo kaffaltii xumurtan, maaloo **Nagahee/Fakkii** kaffaltii keessanii kanaan gaditti ergaa:",
+    "abyssinia_payment_instructions": "🏦 **Kaffaltii Baankii Abisiiniyaa**\n\nMaaloo **{amount} ETB** gara kanaan ergaa:\n\n**Maqaa:** {acc_name}\n**Herrega Baankii:** `{acc_num}`\n\nYoo kaffaltii xumurtan, maaloo **Nagahee/Fakkii** kaffaltii keessanii kanaan gaditti ergaa:",
+    "ask_receipt_number": "Maaloo fakkii ykn screenshot nagahee kaffaltii sirrii ta'e ergaa:",
+    "registration_submitted": "**Galmeen Ergameera!**\n\nGalatoomaa! Odeeffannoon keessan gamaaggamaaf ergameera. Yoo mirkanaa'e liinkii affeerraa chaanaalii keessan ni argattu.",
+    "menu_submit_receipt": "Nagahee Ergi 📝",
+    "menu_check_status": "Haala Eegi 🔍",
+    "menu_refer_friend": "Hiriyaa Affeeri 👥",
+    "menu_change_language": "Afaan Jijjiiri 🌐",
+    "status_pending": "⏳ **Haala: Eeggannoorra jira**\n\nNagaheen keessan garee keenyaan gamaaggamamaa jira. Akkuma mirkanaa'een isin beeksifna!",
+    "status_approved": "✅ **Haala: Mirkanaa'eera**\n\nGalmeen keessan mirkanaa'eera! Liinkii affeerraa chaanaalii argachuuf ergaa keessan ilaalaa.",
+    "status_declined": "❌ **Haala: Kufaa Ta'eera**\n\nGalmeen keessan kufaa ta'eera. Maaloo nagahee haaraa ergaa.",
+    "no_receipt_yet": "Hanga ammaatti nagahee hin ergitne. Jalqabuuf /start barreessaa.",
+    "already_pending": "Galmeen keessan kanaan dura gamaaggamamaa jira. Maaloo hamma admin mirkaneessutti eegaa.",
+    "referral_message": "👥 **Hiriyoota Affeeraa fi Badhaasa Argadhaa!**\n\nLiinkii affeerraa dhuunfaa keessan hiriyoota keessaniif qoodaa:\n\n`{ref_link}`",
+    "ready_new_receipt": "Nagahee haaraa haa erginu!\n\nKaffaltii galmee keessanii akkamitti kaffaluu barbaaddu?",
+    "payment_saved": "Malli kaffaltii filatameera. Nagahee eegaa jira.",
+    "help_instructions": "ℹ️ **Qajeelfama Galmee Founders Academy**\n\n1. Jalqabuuf /start barreessaa.\n2. Maqaa keessan ergaa.\n3. Lakkoofsa bilbilaa keessan qoodaa.\n4. Nagahee kaffaltii ergaa.",
+    "already_registered": "Kanaan dura galmeeffamtaniittu. Maaloo haala keessan ilaaluuf ykn hiriyoota affeeruuf menu gadii fayyadamaa.",
+    "status_approved_msg": "🔍 **Haala Galmee**\n\nNagahee: `{receipt}`\nHaala: Mirkanaa'eera ✅\n\n{link}",
+    "status_declined_msg": "🔍 **Haala Galmee**\n\nNagahee: `{receipt}`\nHaala: Kufaa Ta'eera ❌\n\nSababa: {reason}",
+    "status_pending_msg": "🔍 **Haala Galmee**\n\nNagahee: `{receipt}`\nHaala: Gamaaggama Admin irra jira ⏳",
+    "default_decline_reason": "Odeeffannoon galmeefamtanii fi ragaan keenya wal hin fudhanne.",
+    "last_approved_msg": "Galmeen keessan inni dhumaa mirkanaa'eera ✅\nLiinkii keessan kunoo: {link}",
+    "last_declined_msg": "Galmeen keessan inni dhumaa kufaa ta'eera.",
+    "last_pending_msg": "Galmeen keessan yeroo ammaa gamaaggamamaa jira.",
+    "welcome_name_prefix": "Galatoomaa, **{name}**.\n\n",
+    "receipt_approved_msg": "🎉 **Mirkaneessi Nagahee Mirkanaa'eera!**\n\nAkam jirta **{name}**, nagaheen keessan `{receipt}` milkiin mirkanaa'eera. Amma chaanaalii dhuunfaa makamuuf hayyamamtaniittu!\n\n🔗 **Liinkii Affeerraa**:\n{link}",
+    "receipt_declined_msg": "❌ **Mirkaneessi Nagahee Kufaa Ta'eera**\n\nAkam jirta **{name}**, dhiifama nagaheen keessan `{receipt}` kufaa ta'eera.\n\n⚠️ **Sababa**: {reason}",
+    "referral_reward_msg": "🎁 **Baga gammaddan! Hiriyoota 3 milkiin affeertaniittu!**\n\nAkam jirta **{name}**, koorsii Founders Academy bilisaan argattaniittu!\n\n🔗 **Liinkii Affeerraa**:\n{link}",
+    "quiz_not_completed": "⚠️ **Qabxiin Hin Xumuramne**\n\nWaraqaa ragaa xumuraa argachuuf gaaffilee guyyaa guyyaa hunda xumuruu qabdu."
+  },
+  "ti": {
+    "welcome_choose_lang": "🇪🇹 እንቋዕ ናብ ፋውንደርስ አካዳሚ ብደሓን መጻእኹም!\n\nበጃኹም ቋንቋኹም ይምረጹ:",
+    "ask_name": "እንቋዕ ብደሓን መጻእኹም! ንጀምር።\n\nበጃኹም **ምሉእ ስምኹም** የእትዉ:",
+    "ask_name_am": "በጃኹም ሙሉእ ስምኩም በ**አምሓርኛ** የእትዉ (ምሳሌ፡ አበበ በሶ):",
+    "ask_name_en": "በጃኹም ሙሉእ ስምኩም በ**እንግሊዝኛ** የእትዉ (ምሳሌ፡ Abebe Beso):",
+    "invalid_name": "በጃኹም ትክክለኛ ምሉእ ስም የእትዉ (ፊደላት ጥራይ)።",
+    "ask_phone": "ጣዕሚ ጽቡቕ! ሕጂ በጃኹም ነቲ ታሕቲ ዘሎ ቁልፊ ብምጥዋቕ **ቁጽሪ ስልክኹም** የካፍሉና፣ ወይ ብኢድኩም ጽሓፉ (ንኣብነት 0911...)",
+    "btn_share_contact": "ቁጽሪ ስልኪ ኣካፍል 📞",
+    "phone_saved": "ቁጽሪ ስልኪ ተዓቂቡ ኣሎ።",
+    "duplicate_phone": "እዚ ቁጽሪ ስልኪ እዚ ድሮ ተመዝጊቡ እዩ።",
+    "invalid_phone": "በጃኹም ትክክለኛ ቁጽሪ ስልኪ የእትዉ።",
+    "ask_payment_method": "ፍጹም! ናይ መመዝገቢ ክፍሊትኩም ብኸመይ ክትከፍሉ ትደልዩ?\n\nበጃኹም ካብቶም ታሕቲ ዘለዉ ኣማራጺታት ሓደ ይምረጹ:",
+    "btn_telebirr": "ቴሌብር 📱",
+    "btn_cbe": "የኢትዮጵያ ንግድ ባንክ 🏦",
+    "btn_abyssinia": "ኣቢሲንያ ባንኪ 🏦",
+    "select_payment_method_first": "በጃኹም ቅድም ቀደም ነቶም ላዕሊ ዘለዉ ቁልፍታት ብምጥቃም ኣገባብ ክፍሊት ይምረጹ።",
+    "telebirr_payment_instructions": "📱 **ናይ ቴሌብር ክፍሊት**\n\nበጃኹም **{amount} ETB** ናብዚ የተሓላልፉ:\n\n**ስም:** {acc_name}\n**ቁጽሪ:** `{acc_num}`\n\nክፍሊት ምስ ወዳእኹም፣ በጃኹም ናይቲ ደረሰኝ **ስክሪንሾት ወይ ፎቶ** ኣብ ታሕቲ ስደዱ:",
+    "cbe_payment_instructions": "🏦 **ናይ ንግዲ ባንኪ ክፍሊት**\n\nበጃኹም **{amount} ETB** ናብዚ የተሓላልፉ:\n\n**ስም:** {acc_name}\n**ቁጽሪ ሕሳብ:** `{acc_num}`\n\nክፍሊት ምስ ወዳእኹም፣ በጃኹም ናይቲ ደረሰኝ **ስክሪንሾት ወይ ፎቶ** ኣብ ታሕቲ ስደዱ:",
+    "abyssinia_payment_instructions": "🏦 **ናይ ኣቢሲንያ ባንኪ ክፍሊት**\n\nበጃኹም **{amount} ETB** ናብዚ የተሓላልፉ:\n\n**ስም:** {acc_name}\n**ቁጽሪ ሕሳብ:** `{acc_num}`\n\nክፍሊት ምስ ወዳእኹም፣ በጃኹም ናይቲ ደረሰኝ **ስክሪንሾት ወይ ፎቶ** ኣብ ታሕቲ ስደዱ:",
+    "ask_receipt_number": "በጃኹም ትክክለኛ ስክሪንሾት ወይ ፎቶ ናይ ደረሰኝኩም ስደዱ:",
+    "registration_submitted": "**ምዝገባ ተላኢኹ ኣሎ!**\n\nየቐንየልና! ናይ ምዝገባ ዝርዝርኩም ንግምገማ ተላኢኹ ኣሎ።",
+    "menu_submit_receipt": "ደረሰኝ ኣእቱ 📝",
+    "menu_check_status": "ኩነታት ኣረጋግጽ 🔍",
+    "menu_refer_friend": "ፈታዊ ዓድም 👥",
+    "menu_change_language": "ቋንቋ ቀይር 🌐",
+    "status_pending": "⏳ **ኩነታት: ኣብ መስርሕ ዘሎ**",
+    "status_approved": "✅ **ኩነታት: ጸዲቑ**",
+    "status_declined": "❌ **ኩነታት: ውድቅ ተገይሩ**",
+    "no_receipt_yet": "ክሳብ ሕጂ ዝኾነ ደረሰኝ ኣየእተኹምን። ንምጅማር /start ኢልኩም ጽሓፉ።",
+    "already_pending": "ድሮ ኣብ መስርሕ ዘሎ ምዝገባ ኣለኩም።",
+    "referral_message": "👥 **ኣዕሩኽትኹም ብምዕዳም ሽልማት ረኽቡ!**\n\n`{ref_link}`",
+    "ready_new_receipt": "ሓድሽ ደረሰኝ ንስደድ!",
+    "payment_saved": "ኣገባብ ክፍሊት ተመሪጹ ኣሎ። ደረሰኝ ይጽበ ኣሎ።",
+    "help_instructions": "ℹ️ **መምርሒ ምዝገባ ፋውንደርስ አካዳሚ**\n\n1. ንምጅማር /start ጽሓፉ.\n2. ስምኩም ስደዱ.\n3. ቁጽሪ ስልክኹም የካፍሉ.",
+    "already_registered": "ድሮ ተመዝጊብኩም ኢኹም። በጃኹም ኩነታትኩም ንምፍላጥ ወይ ኣዕሩኽ ንምዕዳም ነቲ ታሕቲ ዘሎ መውጽኢ ተጠቐሙ።",
+    "status_approved_msg": "🔍 **ኩነታት ምዝገባ**\n\nደረሰኝ: `{receipt}`\nኩነታት: ጸዲቑ ✅\n\n{link}",
+    "status_declined_msg": "🔍 **ኩነታት ምዝገባ**\n\nደረሰኝ: `{receipt}`\nኩነታት: ውድቅ ተገይሩ ❌\n\nምክንያት: {reason}",
+    "status_pending_msg": "🔍 **ኩነታት ምዝገባ**\n\nደረሰኝ: `{receipt}`\nኩነታት: ብኣድሚን ይግምገም ኣሎ ⏳",
+    "default_decline_reason": "ዝርዝር ሓበሬታ ምስ ናይ መዝገብና ኣይተሰማምዐን።",
+    "last_approved_msg": "እቲ ናይ መወዳእታ ምዝገባኹም ጸዲቑ ኣሎ ✅\nሊንክኹም እዚ እዩ: {link}",
+    "last_declined_msg": "እቲ ናይ መወዳእታ ምዝገባኹም ውድቅ ተገይሩ።",
+    "last_pending_msg": "ምዝገባኹም ሕጂ ይግምገም ኣሎ።",
+    "welcome_name_prefix": "የቐንየልና፣ **{name}**።\n\n",
+    "receipt_approved_msg": "🎉 **ናይ ደረሰኝ ምርግጋጽ ጸዲቑ ኣሎ!**\n\nሰላም **{name}**፣ ደረሰኝኩም `{receipt}` ብዓወት ተረጋጊጹ ኣሎ።\n\n🔗 **ናይ ዕድመ ሊንክኹም**:\n{link}",
+    "receipt_declined_msg": "❌ **ናይ ደረሰኝ ምርግጋጽ ውድቅ ተገይሩ**\n\nሰላም **{name}**፣ ይቕሬታ ደረሰኝኩም `{receipt}` ውድቅ ተገይሩ ኣሎ።\n\n⚠️ **ምክንያት**: {reason}",
+    "referral_reward_msg": "🎁 **እንቋዕ ደስ በለኩም! 3 ኣዕሩኽትኹም ብዓወት ዓዲምኩም!**\n\n🔗 **ናይ ዕድመ ሊንክኹም**:\n{link}",
+    "quiz_not_completed": "⚠️ **ፈተናታት ኣይተዛዘሙን**\n\nናይ መወዳእታ ምስክር ወረቐት ንምርካብ ኩሎም መዓልታዊ ሕቶታት ክትውድኡ ይግባእ።"
   }
 };
 
@@ -236,7 +332,7 @@ async function getLanguageKeyboard() {
   try {
     const { data: langs } = await supabase.from("languages").select("*").eq("is_active", true);
     if (langs && langs.length > 0) {
-      const flags: any = { "en": "🇬🇧", "am": "🇪🇹", "or": "🇪🇹", "tg": "🇪🇹" };
+      const flags: any = { "en": "🇬🇧", "am": "🇪🇹", "om": "🇪🇹", "or": "🇪🇹", "ti": "🇪🇹", "tg": "🇪🇹" };
       const buttons = langs.map((l: any) => ({
         text: `${flags[l.code] || "🌐"} ${l.name}`,
         callback_data: `lang:${l.code}`
@@ -252,7 +348,8 @@ async function getLanguageKeyboard() {
   }
   return {
     inline_keyboard: [
-      [{ text: "🇬🇧 English", callback_data: "lang:en" }, { text: "🇪🇹 አማርኛ", callback_data: "lang:am" }]
+      [{ text: "🇬🇧 English", callback_data: "lang:en" }, { text: "🇪🇹 አማርኛ", callback_data: "lang:am" }],
+      [{ text: "🇪🇹 Afaan Oromoo", callback_data: "lang:om" }, { text: "🇪🇹 ትግርኛ", callback_data: "lang:ti" }]
     ]
   };
 }
