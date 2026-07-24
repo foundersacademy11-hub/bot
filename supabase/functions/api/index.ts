@@ -1586,12 +1586,43 @@ async function handleRequest(req: Request): Promise<Response> {
         return new Response("OK", { headers: corsHeaders });
       }
 
+      // ── CONTACT SHARE: Always handle first, regardless of step ──────────
+      // If the user shared their contact, process it as a phone number immediately.
+      // This prevents state confusion where contact shares get misrouted.
+      if (contact) {
+        let phone = contact.phone_number || "";
+        // Normalize phone number: ensure it starts with + for international
+        if (phone && !phone.startsWith("+")) {
+          phone = "+" + phone;
+        }
+        if (!phone) {
+          await sendTelegramRequest("sendMessage", { chat_id: chatId, text: getMsg(lang, "invalid_phone") });
+          return new Response("OK", { headers: corsHeaders });
+        }
+        // Check for duplicate phone (ignore if same user)
+        const { data: existingC } = await supabase.from("registrations").select("chat_id").eq("phone", phone).maybeSingle();
+        if (existingC && existingC.chat_id !== chatId) {
+          await sendTelegramRequest("sendMessage", { chat_id: chatId, text: getMsg(lang, "duplicate_phone") });
+          return new Response("OK", { headers: corsHeaders });
+        }
+        await supabase.from("registrations").update({ phone: phone, step: buildStep(lang, "awaiting_payment_method") }).eq("id", reg.id);
+        const msgC = `${getMsg(lang, "phone_saved")}\n\n${getMsg(lang, "ask_payment_method")}`;
+        const kbC = {
+          inline_keyboard: [
+            [{ text: getMsg(lang, "btn_telebirr"), callback_data: "pay_telebirr" }, { text: getMsg(lang, "btn_cbe"), callback_data: "pay_cbe" }],
+            [{ text: getMsg(lang, "btn_abyssinia"), callback_data: "pay_abyssinia" }]
+          ]
+        };
+        await sendTelegramRequest("sendMessage", { chat_id: chatId, text: msgC, reply_markup: kbC });
+        return new Response("OK", { headers: corsHeaders });
+      }
+
       if (currentStep === "awaiting_name") {
-        if (!text) {
+        if (!text || text.trim().length < 2) {
           await sendTelegramRequest("sendMessage", { chat_id: chatId, text: getMsg(lang, "invalid_name") });
           return new Response("OK", { headers: corsHeaders });
         }
-        await supabase.from("registrations").update({ name: text, step: buildStep(lang, "awaiting_name2") }).eq("id", reg.id);
+        await supabase.from("registrations").update({ name: text.trim(), step: buildStep(lang, "awaiting_name2") }).eq("id", reg.id);
         await sendTelegramRequest("sendMessage", {
           chat_id: chatId,
           text: getMsg(lang, "ask_name_en"),
@@ -1602,34 +1633,43 @@ async function handleRequest(req: Request): Promise<Response> {
       }
 
       if (currentStep === "awaiting_name2") {
-        if (!text) {
+        if (!text || text.trim().length < 2) {
           await sendTelegramRequest("sendMessage", { chat_id: chatId, text: getMsg(lang, "invalid_name") });
           return new Response("OK", { headers: corsHeaders });
         }
-        await supabase.from("registrations").update({ name2: text, step: buildStep(lang, "awaiting_phone") }).eq("id", reg.id);
+        await supabase.from("registrations").update({ name2: text.trim(), step: buildStep(lang, "awaiting_phone") }).eq("id", reg.id);
         const keyboard = {
           keyboard: [[{ text: getMsg(lang, "btn_share_contact"), request_contact: true }]],
           one_time_keyboard: true,
           resize_keyboard: true
         };
-        const welcome = getMsg(lang, "welcome_name_prefix").replace("{name}", text);
+        const welcome = getMsg(lang, "welcome_name_prefix").replace("{name}", text.trim());
         await sendTelegramRequest("sendMessage", { chat_id: chatId, text: welcome + getMsg(lang, "ask_phone"), parse_mode: "Markdown", reply_markup: keyboard });
         return new Response("OK", { headers: corsHeaders });
       }
 
       if (currentStep === "awaiting_phone") {
-        let phone = contact ? contact.phone_number : (text ? text : null);
-        if (!phone) {
-          await sendTelegramRequest("sendMessage", { chat_id: chatId, text: getMsg(lang, "invalid_phone") });
+        // Handle typed phone number (contact share is handled above)
+        let phone = text ? text.trim() : null;
+        // Basic phone validation: must have digits
+        if (!phone || !/^[\+\d\s\-\(\)]{7,15}$/.test(phone)) {
+          const keyboard = {
+            keyboard: [[{ text: getMsg(lang, "btn_share_contact"), request_contact: true }]],
+            one_time_keyboard: true,
+            resize_keyboard: true
+          };
+          await sendTelegramRequest("sendMessage", { chat_id: chatId, text: getMsg(lang, "invalid_phone"), reply_markup: keyboard });
           return new Response("OK", { headers: corsHeaders });
         }
-
-        const { data: existing } = await supabase.from("registrations").select("*").eq("phone", phone).maybeSingle();
+        // Normalize: add + if starts with country code digits
+        if (!phone.startsWith("+")) {
+          phone = "+" + phone;
+        }
+        const { data: existing } = await supabase.from("registrations").select("chat_id").eq("phone", phone).maybeSingle();
         if (existing && existing.chat_id !== chatId) {
           await sendTelegramRequest("sendMessage", { chat_id: chatId, text: getMsg(lang, "duplicate_phone") });
           return new Response("OK", { headers: corsHeaders });
         }
-
         await supabase.from("registrations").update({ phone: phone, step: buildStep(lang, "awaiting_payment_method") }).eq("id", reg.id);
         const msg = `${getMsg(lang, "phone_saved")}\n\n${getMsg(lang, "ask_payment_method")}`;
         const kb = {
