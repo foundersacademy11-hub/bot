@@ -1689,7 +1689,7 @@ async function handleRequest(req: Request): Promise<Response> {
         }
 
         if (!photo && !message.photo_url) {
-          const errMsg = lang === "en" ? "Please upload a screenshot/image of your receipt instead of typing text." : "እባክዎ ከመፃፍ ይልቅ የደረሰኝዎን ፎቶ/ቅጂ ይላኩ።";
+          const errMsg = getMsg(lang, "err_upload_receipt_only");
           await sendTelegramRequest("sendMessage", { chat_id: chatId, text: errMsg });
           return new Response("OK", { headers: corsHeaders });
         }
