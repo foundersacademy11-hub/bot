@@ -1501,8 +1501,31 @@ async function handleRequest(req: Request): Promise<Response> {
       if (isMenuCommand(text, "menu_refer_friend") || text === "/refer") {
         const botUsername = await getBotUsername();
         const refLink = `https://t.me/${botUsername}?start=ref_${chatId}`;
-        const msg = getMsg(lang, "referral_message").replace("{ref_link}", refLink);
-        await sendTelegramRequest("sendMessage", { chat_id: chatId, text: msg, parse_mode: "Markdown", reply_markup: getMenuKeyboard(lang) });
+
+        // Count how many approved referrals this user already has
+        const { data: myReferrals } = await supabase
+          .from("registrations")
+          .select("status")
+          .eq("referred_by_chat_id", chatId);
+        const approvedCount = myReferrals ? myReferrals.filter((r: any) => r.status === "approved").length : 0;
+        const totalCount = myReferrals ? myReferrals.length : 0;
+
+        const progressMsgs: any = {
+          "en": `\n\n📊 **Your Progress**: ${approvedCount}/3 approved referrals 🏆`,
+          "am": `\n\n📊 **እድገትዎ**: ${approvedCount}/3 የጸደቁ ጓደኞች 🏆`,
+          "om": `\n\n📊 **Furtuu keessan**: ${approvedCount}/3 mirkanaa'an 🏆`,
+          "ti": `\n\n📊 **ምምሕዳርኹም**: ${approvedCount}/3 ዝጸደቑ 🏆`
+        };
+
+        const msg = getMsg(lang, "referral_message").replace("{ref_link}", refLink)
+          + (progressMsgs[lang] || progressMsgs["en"]);
+
+        const refKb = {
+          inline_keyboard: [[
+            { text: "📤 Share My Link", url: `https://t.me/share/url?url=${encodeURIComponent(refLink)}&text=${encodeURIComponent("Join Founders Academy and unlock amazing courses! 🚀")}` }
+          ]]
+        };
+        await sendTelegramRequest("sendMessage", { chat_id: chatId, text: msg, parse_mode: "Markdown", reply_markup: refKb });
         return new Response("OK", { headers: corsHeaders });
       }
 
@@ -1534,6 +1557,17 @@ async function handleRequest(req: Request): Promise<Response> {
 
       // /start handling
       if (text.startsWith("/start") || isMenuCommand(text, "menu_submit_receipt") || text === "/submit") {
+        // Parse referral FIRST — before any early-exit, so existing users don't lose the ref tracking
+        let referredBy: number | null = null;
+        const startParts = text.split(" ");
+        if (startParts.length > 1 && startParts[1].startsWith("ref_")) {
+          try {
+            referredBy = parseInt(startParts[1].replace("ref_", ""));
+            // Don't allow self-referral
+            if (referredBy === chatId) referredBy = null;
+          } catch (_e) { /* ignore */ }
+        }
+
         if (reg) {
           const status = reg.status;
           if (isMenuCommand(text, "menu_submit_receipt") || text === "/submit") {
@@ -1576,16 +1610,6 @@ async function handleRequest(req: Request): Promise<Response> {
               await sendTelegramRequest("sendMessage", { chat_id: chatId, text: getMsg(lang, "already_registered"), reply_markup: getMenuKeyboard(lang) });
               return new Response("OK", { headers: corsHeaders });
             }
-          }
-        }
-
-        let referredBy: number | null = null;
-        const parts = text.split(" ");
-        if (parts.length > 1 && parts[1].startsWith("ref_")) {
-          try {
-            referredBy = parseInt(parts[1].replace("ref_", ""));
-          } catch (_e) {
-            // ignore
           }
         }
 
