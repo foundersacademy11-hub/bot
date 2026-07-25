@@ -47,6 +47,7 @@ const STATIC_MESSAGES = {
     "menu_check_status": "Check Status 🔍✨",
     "menu_refer_friend": "Refer Friends 👥🎁",
     "menu_change_language": "Change Language 🌐✨",
+    "menu_support": "Customer Support 💬",
     "status_pending": "⏳✨ **Status: Verification in Progress!**\n\nOur superteam is verifying your receipt. Hold tight! 🚀",
     "status_approved": "🎉✅ **Status: APPROVED & READY!**\n\nWoohoo! Check your invite link below to step into the VIP channel! 🌟",
     "status_declined": "❌ **Status: Declined**\n\nNo worries! Please check the reason below & resubmit your receipt: ✨",
@@ -93,6 +94,7 @@ const STATIC_MESSAGES = {
     "menu_check_status": "ሁኔታ ማረጋገጫ 🔍",
     "menu_refer_friend": "ጓደኛ ጋብዝ 👥",
     "menu_change_language": "ቋንቋ ቀይር 🌐",
+    "menu_support": "የደንበኛ ድጋፍ 💬",
     "status_pending": "በመጠባበቅ ላይ ⏳",
     "status_approved": "ጸድቋል ✅",
     "status_declined": "ውድቅ ተደርጓል ❌",
@@ -141,6 +143,7 @@ const STATIC_MESSAGES = {
     "menu_check_status": "Haala Eegi 🔍",
     "menu_refer_friend": "Hiriyaa Affeeri 👥",
     "menu_change_language": "Afaan Jijjiiri 🌐",
+    "menu_support": "Deeggarsa Maamilaa 💬",
     "status_pending": "⏳ **Haala: Eeggannoorra jira**\n\nNagaheen keessan garee keenyaan gamaaggamamaa jira. Akkuma mirkanaa'een isin beeksifna!",
     "status_approved": "✅ **Haala: Mirkanaa'eera**\n\nGalmeen keessan mirkanaa'eera! Liinkii affeerraa chaanaalii argachuuf ergaa keessan ilaalaa.",
     "status_declined": "❌ **Haala: Kufaa Ta'eera**\n\nGalmeen keessan kufaa ta'eera. Maaloo nagahee haaraa ergaa.",
@@ -189,6 +192,7 @@ const STATIC_MESSAGES = {
     "menu_check_status": "ኩነታት ኣረጋግጽ 🔍",
     "menu_refer_friend": "ፈታዊ ዓድም 👥",
     "menu_change_language": "ቋንቋ ቀይር 🌐",
+    "menu_support": "ደገፍ ዓማዊል 💬",
     "status_pending": "⏳ **ኩነታት: ኣብ መስርሕ ዘሎ**",
     "status_approved": "✅ **ኩነታት: ጸዲቑ**",
     "status_declined": "❌ **ኩነታት: ውድቅ ተገይሩ**",
@@ -324,7 +328,7 @@ function getMenuKeyboard(lang = "en") {
     keyboard: [
       [{ text: getMsg(lang, "menu_submit_receipt") }],
       [{ text: getMsg(lang, "menu_refer_friend") }, { text: getMsg(lang, "menu_check_status") }],
-      [{ text: getMsg(lang, "menu_change_language") }]
+      [{ text: getMsg(lang, "menu_change_language") }, { text: getMsg(lang, "menu_support") }]
     ],
     resize_keyboard: true
   };
@@ -1476,6 +1480,21 @@ async function handleRequest(req: Request): Promise<Response> {
       if (isMenuCommand(text, "menu_change_language") || text === "/language") {
         const msg = getMsg(lang, "welcome_choose_lang");
         await sendTelegramRequest("sendMessage", { chat_id: chatId, text: msg, reply_markup: await getLanguageKeyboard() });
+        return new Response("OK", { headers: corsHeaders });
+      }
+
+      if (isMenuCommand(text, "menu_support") || text === "/support") {
+        const supportMsgs: any = {
+          "en": "💬✨ **Need Help? We're Here for You!** 🚀\n\nOur friendly support team is ready to assist you with any questions or issues! 🎉\n\n👉 **Tap below to chat with us:**\n@foundersupportt",
+          "am": "💬✨ **እርዳታ ይፈልጋሉ? እዚህ ነን!** 🚀\n\nለማንኛውም ጥያቄ ወይም ችግር የደንበኛ ድጋፍ ቡድናችን ዝግጁ ነው! 🎉\n\n👉 **ለማነጋገር ይጫኑ:**\n@foundersupportt",
+          "om": "💬✨ **Gargaarsa barbaaddu? Asiitti jirra!** 🚀\n\nGaaffi ykn rakkoo kamiyyaaf garee deggersa keenyatu isin eega! 🎉\n\n👉 **Nu qunnamuuf tuqi:**\n@foundersupportt",
+          "ti": "💬✨ **ሓገዝ ትደልዩ? ኣሎና!** 🚀\n\nን ዝኾነ ሕቶ ወይ ጸገም ናይ ደገፍ ጉጅለና ድሉው እዩ! 🎉\n\n👉 **ንምርካብ ጠዉቑ:**\n@foundersupportt"
+        };
+        const supportMsg = supportMsgs[lang] || supportMsgs["en"];
+        const supportKb = {
+          inline_keyboard: [[{ text: "💬 Chat Support", url: "https://t.me/foundersupportt" }]]
+        };
+        await sendTelegramRequest("sendMessage", { chat_id: chatId, text: supportMsg, parse_mode: "Markdown", reply_markup: supportKb });
         return new Response("OK", { headers: corsHeaders });
       }
 
